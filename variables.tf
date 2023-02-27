@@ -41,7 +41,7 @@ variable "alertmanager" {
       runAsUser                = optional(number, 65534)
     }))
     alertmanager_service_annotations = optional(object({}))
-    alertmanager_service_port = optional(number, 80)
+    alertmanager_service_port = optional(number, 9093)
     alertmanager_service_type = optional(string, "ClusterIP")
     alertmanager_pdb = optional(object({
       maxUnavailable = optional(number, 1)
