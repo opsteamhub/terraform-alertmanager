@@ -55,6 +55,7 @@ receivers:
     slack_configs:
      - api_url: ${v.slack_api_url}
        channel: '#${v.slack_channel}'
+       icon_url: https://coralogix.com/wp-content/uploads/2021/02/Prometheus.png
        title: '[{{ .Status }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] Monitoring Event Notification'
        send_resolved: true
        text: >- 
