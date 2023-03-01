@@ -46,8 +46,7 @@ receivers:
         num_firing: '{{ .Alerts.Firing | len }}'
         num_resolved: '{{ .Alerts.Resolved | len }}'
         resolved: '{{ template "pagerduty.default.instances" .Alerts.Resolved }}'
-      severity: '{{ if .CommonLabels.severity }}{{ .CommonLabels.severity | toLower
-        }}{{ else }}critical{{ end }}'
+      severity: '{{ if .CommonLabels.severity }}{{ .CommonLabels.severity | toLower}}{{ else }}critical{{ end }}'
       class: '{{ .CommonLabels.class }}'
       component: '{{ .CommonLabels.component }}'
       group: {{ if .CommonLabels.environment }}.{{ .CommonLabels.environment }}{{ end }}
