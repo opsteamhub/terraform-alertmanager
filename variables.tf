@@ -49,8 +49,8 @@ variable "alertmanager" {
 
     enable_slack_integration = optional(bool, false)
     slack_config = optional(map(object({
-        slack_name = optional(string)
-        slack_channel = optional(string)
+        slack_name = optional(string, "")
+        slack_channel = optional(string, "")
         slack_api_url = optional(string)
         receiver_name = optional(string)
         severity = optional(string, "high")
