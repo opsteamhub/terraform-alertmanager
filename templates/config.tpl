@@ -42,7 +42,7 @@ receivers:
       class: "{{ range .Alerts }}{{ .Labels.alertname }}{{ end }}"
       group: "{{ range .Alerts }}{{ .Labels.namespace }}{{ end }}"
       component: "{{ range .Alerts }}{{ .Labels.pod }}{{ end }}"
-	    severity: {v.severity}  
+	    severity: ${v.severity}  
       details:
         container: "{{ range .Alerts }}{{ .Labels.container }}{{ end }}"
         region: "{{ range .Alerts }}{{ .Labels.region }}{{ end }}"
