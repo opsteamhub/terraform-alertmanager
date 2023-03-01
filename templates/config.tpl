@@ -39,7 +39,7 @@ receivers:
   - name: ${v.pagerduty_name}
     pagerduty_configs:
     - send_resolved: true
-      routing_key: ${v.pagerduty_key}
+      service_key: ${v.pagerduty_key}
       url: https://events.pagerduty.com/v2/enqueue
       client: '{{ template "pagerduty.default.client" . }}'
       client_url: '{{ template "pagerduty.default.clientURL" . }}'
