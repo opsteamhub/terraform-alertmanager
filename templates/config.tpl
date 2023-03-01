@@ -43,14 +43,7 @@ receivers:
       group: "{{ range .Alerts }}{{ .Labels.namespace }}{{ end }}"
       component: "{{ range .Alerts }}{{ .Labels.pod }}{{ end }}"
 	    severity: ${v.severity}    
-      details:
-        container: "{{ range .Alerts }}{{ .Labels.container }}{{ end }}"
-        region: "{{ range .Alerts }}{{ .Labels.region }}{{ end }}"
-        severity: "{{ range .Alerts }}{{ .Labels.severity }}{{ end }}"
-        ownership: "{{ range .Alerts }}{{ .Annotations.ownership }}{{ end }}"
-        summary: "{{ range .Alerts }}{{ .Annotations.summary }}{{ end }}"
-        runbook_url: "{{ range .Alerts }}{{ .Annotations.runbook_url }}{{ end }}"
-        description: "{{ range .Alerts }}{{ .Annotations.description }}{{ end }}"    
+   
   %{ if enable_slack_integration == true }
   %{ for k, v in slack_config }    
     slack_configs:
