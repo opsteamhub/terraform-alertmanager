@@ -52,18 +52,18 @@ receivers:
     slack_configs:
      - api_url: ${v.slack_api_url}
        channel: '#${v.slack_channel}'
-        title: '[{{ .Status }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] Monitoring Event Notification'
-        send_resolved: true
-        text: >- 
-          <!channel> :warning::warning::warning:
-          {{ range .Alerts }}
-            *Environment:* production
-            *Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`
-            *Description:* {{ .Annotations.description }}
-            *Details:*
-            {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
-            {{ end }}
-          {{ end }}      
+       title: '[{{ .Status }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] Monitoring Event Notification'
+       send_resolved: true
+       text: >- 
+         <!channel> :warning::warning::warning:
+         {{ range .Alerts }}
+           *Environment:* production
+           *Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`
+           *Description:* {{ .Annotations.description }}
+           *Details:*
+           {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
+           {{ end }}
+         {{ end }}      
   %{ endfor ~} 
   %{ endif ~}         
   %{ endfor ~}    
