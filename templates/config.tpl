@@ -50,9 +50,8 @@ receivers:
         }}{{ else }}critical{{ end }}'
       class: '{{ .CommonLabels.class }}'
       component: '{{ .CommonLabels.component }}'
-      group: {{ if .CommonLabels.environment }}.{{ .CommonLabels.environment }}{{
-        end }}{{ if .CommonLabels.region }}.{{ .CommonLabels.region }}{{ end }}{{ if
-        .CommonLabels.service }}.{{ .CommonLabels.service }}{{ end }}   
+      group: {{ if .CommonLabels.environment }}.{{ .CommonLabels.environment }}{{ end }}
+      {{ if .CommonLabels.region }}.{{ .CommonLabels.region }}{{ end }}{{ if .CommonLabels.service }}.{{ .CommonLabels.service }}{{ end }}   
   %{ if enable_slack_integration == true }
   %{ for k, v in slack_config }    
     slack_configs:
