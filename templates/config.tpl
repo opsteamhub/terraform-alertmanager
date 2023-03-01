@@ -45,6 +45,8 @@ receivers:
      - api_url: ${v.slack_api_url}
        channel: '#${v.slack_channel}'
        send_resolved: true  
+       title: "{{ range .Alerts }}{{ .Annotations.summary }}\n{{ end }}"
+       text: "{{ range .Alerts }}{{ .Annotations.description }}\n{{ end }}"       
   %{ endfor ~} 
   %{ endif ~}         
   %{ endfor ~}    
