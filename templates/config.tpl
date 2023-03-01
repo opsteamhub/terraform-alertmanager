@@ -26,8 +26,8 @@ route:
     %{ for k, v in pagerduty_config }  
     - receiver: ${v.pagerduty_name}
       matchers:
-        - severity=${v.severity}
-        - service=${v.pagerduty_name}
+        - severity=~"${v.severity}"
+        - service=~"${v.pagerduty_name}"
       group_by: 
       - ${v.group_by}
     %{ endfor ~}
