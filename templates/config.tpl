@@ -39,7 +39,7 @@ receivers:
   - name: ${v.pagerduty_name}
     pagerduty_configs:
     - send_resolved: true
-      service_key: ${v.pagerduty_key}
+      routing_key: ${v.pagerduty_key}
       url: https://events.pagerduty.com/v2/enqueue
       client: '{{ template "pagerduty.default.client" . }}'
       client_url: '{{ template "pagerduty.default.clientURL" . }}'
@@ -49,7 +49,7 @@ receivers:
         num_firing: '{{ .Alerts.Firing | len }}'
         num_resolved: '{{ .Alerts.Resolved | len }}'
         resolved: '{{ template "pagerduty.default.instances" .Alerts.Resolved }}'
-      severity: '{{$labels.severity}}'  
+      severity: '{{ if .CommonLabels.severity }}{{ .CommonLabels.severity | toLower}}{{ else }}critical{{ end }}'
   %{ if enable_slack_integration == true }
   %{ for k, v in slack_config }    
     slack_configs:
