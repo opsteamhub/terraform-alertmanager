@@ -38,8 +38,7 @@ receivers:
   %{ for k, v in pagerduty_config }
   - name: ${v.pagerduty_name}
     pagerduty_configs:
-    - routing_key: ${v.pagerduty_key}
-	    severity: ${v.severity}  
+    - service_key: ${v.pagerduty_key}
       details:
         container: "{{ range .Alerts }}{{ .Labels.container }}{{ end }}"
         region: "{{ range .Alerts }}{{ .Labels.region }}{{ end }}"
