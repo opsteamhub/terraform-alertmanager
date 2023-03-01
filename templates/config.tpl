@@ -60,7 +60,6 @@ receivers:
        text: >- 
          <!channel> :warning::warning::warning:
          {{ range .Alerts }}
-           *Environment:* production
            *Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`
            *Description:* {{ .Annotations.description }}
            *Details:*
