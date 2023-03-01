@@ -34,20 +34,19 @@ route:
 
 receivers:
   - name: default-receiver
-  %{ if enable_slack_integration == true }
-  %{ for k, v in slack_config }
-  - name: ${v.slack_name}
-    slack_configs:
-     - api_url: ${v.slack_api_url}
-       channel: '#${v.slack_channel}'
-       send_resolved: true
-  %{ endfor ~} 
-  %{ endif ~}
 
   %{ for k, v in pagerduty_config }
   - name: ${v.pagerduty_name}
     pagerduty_configs:
     - service_key: ${v.pagerduty_key}
+  %{ if enable_slack_integration == true }
+  %{ for k, v in slack_config }    
+    slack_configs:
+     - api_url: ${v.slack_api_url}
+       channel: '#${v.slack_channel}'
+       send_resolved: true  
+  %{ endfor ~} 
+  %{ endif ~}         
   %{ endfor ~}    
     
 
