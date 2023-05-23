@@ -43,7 +43,7 @@ receivers:
       url: https://events.pagerduty.com/v2/enqueue
       client: '{{ template "pagerduty.default.client" . }}'
       client_url: '{{ template "pagerduty.default.clientURL" . }}'
-      description: '[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ .CommonAnnotations.summary }}']
+      description: '{{ template "pushover.default.title" . }}'
       details:
         firing: '{{ template "pagerduty.default.instances" .Alerts.Firing }}'
         num_firing: '{{ .Alerts.Firing | len }}'
