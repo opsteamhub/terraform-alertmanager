@@ -28,8 +28,7 @@ route:
       matchers:
         - severity=~"${v.severity}"
         - service=~"${v.pagerduty_name}"
-      group_by: 
-      - ${v.group_by}
+      group_by: [...]
     %{ endfor ~}
 
 receivers:
