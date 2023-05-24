@@ -65,7 +65,7 @@ variable "alertmanager" {
         pagerduty_name = optional(string)
         pagerduty_key = optional(string)
         severity = optional(string, "high")
-        group_by = optional(string, "alertname")
+        group_by = optional(string, "[...]")
     })))
 
     configmap_name = optional(string, "alertmanager")
