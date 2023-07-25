@@ -25,7 +25,7 @@ variable "alertmanager" {
     alertmanager_pv_access_modes = optional(list(string), ["ReadWriteOnce"])
     alertmanager_pv_size = optional(string, "2Gi")
     alertmanager_storage_class = optional(string, "gp2")
-    alertmanager_replica = optional(number, 1)
+    alertmanager_replica = optional(number, 0)
     alertmanager_resources = optional(map(object({})))
     alertmanager_extra_args = optional(map(object({})))
     alertmanager_security_context = optional(object({
