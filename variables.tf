@@ -27,7 +27,7 @@ variable "alertmanager" {
     alertmanager_storage_class               = optional(string, "gp2")
     alertmanager_replica                     = optional(number, 1)
     alertmanager_resources                   = optional(map(object({})))
-    #alertmanager_extra_args                  = optional(map(object({})))
+    alertmanager_extra_args                  = optional(map(string))
     alertmanager_security_context = optional(object({
       fsGroup = optional(number, 65534)
       seccompProfile = optional(object({
