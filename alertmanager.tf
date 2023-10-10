@@ -28,7 +28,7 @@ resource "helm_release" "alertmanager" {
       affinity                    = jsonencode(each.value["alertmanager_affinity"]),
       security_context            = jsonencode(each.value["alertmanager_security_context"]),
       container_security_context  = jsonencode(each.value["alertmanager_container_security_context"]),
-      extra_args                  = jsonencode(each.value["alertmanager_extra_args"]),
+      #extra_args                  = jsonencode(each.value["alertmanager_extra_args"]),
       service_annotations         = jsonencode(each.value["alertmanager_service_annotations"]),
       service_port                = each.value["alertmanager_service_port"],
       service_type                = each.value["alertmanager_service_type"],
