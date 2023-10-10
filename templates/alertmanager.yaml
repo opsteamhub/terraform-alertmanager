@@ -6,8 +6,6 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: ${tag}
 
-extraArgs: {} #${extra_args}
-
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
