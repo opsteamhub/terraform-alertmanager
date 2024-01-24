@@ -20,6 +20,10 @@ route:
       continue: ${v.continue}
       repeat_interval: ${v.repeat_interval}
       group_interval: ${v.group_interval}
+      time:
+        days: [monday, tuesday, thursday, friday]
+        start: 17:00
+        end: 08:00
     %{ endfor ~}
     %{ endif ~}
 
