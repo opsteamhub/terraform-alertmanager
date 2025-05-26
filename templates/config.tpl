@@ -46,12 +46,13 @@ receivers:
       url: https://events.pagerduty.com/v2/enqueue
       client: '{{ template "pagerduty.default.client" . }}'
       client_url: '{{ template "pagerduty.default.clientURL" . }}'
-      description: '{{ .CommonAnnotations.description }}'
+      description: '[{{ .CommonLabels.cliente }}] {{ .CommonAnnotations.description }}'
       details:
         firing: '{{ template "pagerduty.default.instances" .Alerts.Firing }}'
         num_firing: '{{ .Alerts.Firing | len }}'
         num_resolved: '{{ .Alerts.Resolved | len }}'
         resolved: '{{ template "pagerduty.default.instances" .Alerts.Resolved }}'
+        cliente: '{{ .CommonLabels.cliente }}'
       severity: '{{ if .CommonLabels.severity }}{{ .CommonLabels.severity | toLower}}{{ else }}critical{{ end }}'
   %{ if enable_slack_integration == true }
   %{ for k, v in slack_config }    
