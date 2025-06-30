@@ -5,7 +5,7 @@ variable "alertmanager" {
     alertmanager_release_name                = optional(string, "alertmanager")
     alertmanager_chart_name                  = optional(string, "alertmanager")
     alertmanager_chart_repository            = optional(string, "https://prometheus-community.github.io/helm-charts")
-    alertmanager_chart_version               = optional(string, "")
+    alertmanager_chart_version               = optional(string, "1.21.0")
     alertmanager_chart_namespace             = optional(string, "default")
     alertmanager_repository                  = optional(string, "quay.io/prometheus/alertmanager")
     alertmanager_tag                         = optional(string, "v0.22.2")
