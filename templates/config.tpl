@@ -44,23 +44,15 @@ receivers:
     - send_resolved: true
       routing_key: ${v.pagerduty_key}
       url: https://events.pagerduty.com/v2/enqueue
-      client: 'Alertmanager'
-      client_url: 'https://alertmanager.example.com'
-      description: >-
-        {{ if eq .Status "firing" }}
-        🚨 [{{ .CommonLabels.cliente | title }}] {{ .CommonAnnotations.summary | default .CommonAnnotations.description }}
-        {{ else }}
-        ✅ [{{ .CommonLabels.cliente | title }}] Alerta resolvido: {{ .CommonAnnotations.summary | default .CommonAnnotations.description }}
-        {{ end }}
+      client: '{{ template "pagerduty.default.client" . }}'
+      client_url: '{{ template "pagerduty.default.clientURL" . }}'
+      description: '[{{ .CommonLabels.cliente }}] {{ .CommonAnnotations.description }}'
       details:
-        status: '{{ .Status }}'
+        firing: '{{ template "pagerduty.default.instances" .Alerts.Firing }}'
+        num_firing: '{{ .Alerts.Firing | len }}'
+        num_resolved: '{{ .Alerts.Resolved | len }}'
+        resolved: '{{ template "pagerduty.default.instances" .Alerts.Resolved }}'
         cliente: '{{ .CommonLabels.cliente }}'
-        servico: '{{ .CommonLabels.service | default "N/A" }}'
-        instancia: '{{ .CommonLabels.instance | default "N/A" }}'
-        severidade: '{{ .CommonLabels.severity | title }}'
-        alertas_ativos: '{{ .Alerts.Firing | len }}'
-        alertas_resolvidos: '{{ .Alerts.Resolved | len }}'
-        detalhes: '{{ .CommonAnnotations.description }}'
       severity: '{{ if .CommonLabels.severity }}{{ .CommonLabels.severity | toLower}}{{ else }}critical{{ end }}'
   %{ if enable_slack_integration == true }
   %{ for k, v in slack_config }    
@@ -83,5 +75,4 @@ receivers:
   %{ endif ~}         
   %{ endfor ~}    
     
-
 
